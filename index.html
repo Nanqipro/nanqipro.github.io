@@ -342,6 +342,61 @@
     .hero-photo-wrap       { animation: fadeUp .6s cubic-bezier(.16,1,.3,1) .12s backwards; }
 
     ::selection { background: var(--text); color: #fff; }
+
+    /* ── Status button ───────────────────────────────── */
+    .hero-photo-avatar { position: relative; display: inline-block; }
+    .status-dot {
+      position: absolute; bottom: 8px; right: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #10b981; border: 2.5px solid #fff;
+      transition: background .25s;
+    }
+    .status-dot.blue   { background: #3b82f6; }
+    .status-dot.orange { background: #f59e0b; }
+    .status-dot.gray   { background: #9ca3af; }
+
+    .status-wrap { position: relative; width: 100%; }
+
+    .status-btn {
+      display: flex; align-items: center; gap: 5px;
+      width: 100%; padding: 5px 10px;
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      border-radius: 999px; cursor: pointer;
+      font-size: 12px; color: var(--text-2); font-family: var(--sans);
+      transition: all .15s; white-space: nowrap;
+    }
+    .status-btn:hover { background: var(--bg-muted); border-color: var(--border-strong); color: var(--text); }
+    .status-btn-emoji { font-size: 13px; flex-shrink: 0; }
+    .status-btn-text  { flex: 1; text-align: left; font-weight: 500; }
+    .status-chevron   { width: 12px; height: 12px; flex-shrink: 0; color: var(--text-3); transition: transform .2s; }
+    .status-btn[aria-expanded="true"] .status-chevron { transform: rotate(180deg); }
+
+    .status-dropdown {
+      position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      width: 168px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--r-lg); box-shadow: var(--shadow-md);
+      padding: 6px; z-index: 200;
+      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px);
+      transition: opacity .18s, transform .18s;
+    }
+    .status-dropdown.open {
+      opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .status-dropdown-title {
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-3);
+      padding: 4px 8px 6px;
+    }
+    .status-option {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; padding: 7px 8px; border: none; background: transparent;
+      border-radius: var(--r-md); cursor: pointer; font-family: var(--sans);
+      font-size: 13px; color: var(--text-2); text-align: left; transition: background .12s;
+    }
+    .status-option:hover { background: var(--bg-muted); color: var(--text); }
+    .status-option--active { background: var(--bg-muted); color: var(--text); font-weight: 500; }
+    .status-option-emoji { font-size: 15px; flex-shrink: 0; width: 20px; text-align: center; }
   </style>
 </head>
 <body>
@@ -413,9 +468,44 @@
 
         <!-- Photo -->
         <div class="hero-photo-wrap">
-          <img src="个人照片.jpg" alt="赵劲" class="hero-photo" />
+          <div class="hero-photo-avatar">
+            <img src="个人照片.jpg" alt="赵劲" class="hero-photo" />
+            <div class="status-dot" id="statusDot"></div>
+          </div>
           <div class="hero-photo-name">赵劲</div>
           <div class="hero-photo-school">南昌大学</div>
+
+          <!-- Status button -->
+          <div class="status-wrap" id="statusWrap">
+            <button class="status-btn" id="statusBtn" aria-haspopup="true" aria-expanded="false">
+              <span class="status-btn-emoji" id="statusEmoji">🔍</span>
+              <span class="status-btn-text" id="statusText">正在求职中</span>
+              <svg class="status-chevron" id="statusChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="status-dropdown" id="statusDropdown" role="menu">
+              <div class="status-dropdown-title">设置状态</div>
+              <button class="status-option status-option--active" data-emoji="🔍" data-text="正在求职中" data-color="green" role="menuitem">
+                <span class="status-option-emoji">🔍</span>
+                <span class="status-option-label">正在求职中</span>
+              </button>
+              <button class="status-option" data-emoji="💻" data-text="专注编码中" data-color="blue" role="menuitem">
+                <span class="status-option-emoji">💻</span>
+                <span class="status-option-label">专注编码中</span>
+              </button>
+              <button class="status-option" data-emoji="📚" data-text="学习充电中" data-color="orange" role="menuitem">
+                <span class="status-option-emoji">📚</span>
+                <span class="status-option-label">学习充电中</span>
+              </button>
+              <button class="status-option" data-emoji="🌴" data-text="休息放松中" data-color="green" role="menuitem">
+                <span class="status-option-emoji">🌴</span>
+                <span class="status-option-label">休息放松中</span>
+              </button>
+              <button class="status-option" data-emoji="🚫" data-text="暂不考虑机会" data-color="gray" role="menuitem">
+                <span class="status-option-emoji">🚫</span>
+                <span class="status-option-label">暂不考虑机会</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -773,6 +863,38 @@
   </footer>
 
   <script>
+    // ── Status button ──────────────────────────────────
+    (function() {
+      const btn      = document.getElementById('statusBtn');
+      const dropdown = document.getElementById('statusDropdown');
+      const dot      = document.getElementById('statusDot');
+      const emoji    = document.getElementById('statusEmoji');
+      const text     = document.getElementById('statusText');
+      const options  = document.querySelectorAll('.status-option');
+
+      function open()  { dropdown.classList.add('open');  btn.setAttribute('aria-expanded','true');  }
+      function close() { dropdown.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      function toggle(){ dropdown.classList.contains('open') ? close() : open(); }
+
+      btn.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+
+      options.forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          const e = this.dataset.emoji, t = this.dataset.text, c = this.dataset.color || 'green';
+          emoji.textContent = e;
+          text.textContent  = t;
+          dot.className = 'status-dot ' + (c === 'green' ? '' : c);
+          options.forEach(function(o){ o.classList.remove('status-option--active'); });
+          this.classList.add('status-option--active');
+          close();
+        });
+      });
+
+      document.addEventListener('click', function(e){
+        if (!document.getElementById('statusWrap').contains(e.target)) close();
+      });
+    })();
+
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
