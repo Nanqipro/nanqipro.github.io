@@ -270,6 +270,42 @@
       border: 1px solid var(--border);
     }
 
+    /* ── Test accounts table ──────────────────────────── */
+    .accounts-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+    .accounts-summary {
+      padding: 10px 14px;
+      font-size: 13px; font-weight: 600; color: var(--text-2);
+      background: var(--bg-subtle); cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      user-select: none; list-style: none;
+    }
+    .accounts-summary::-webkit-details-marker { display: none; }
+    .accounts-summary::before {
+      content: '▶'; font-size: 10px; color: var(--text-3);
+      transition: transform .15s;
+    }
+    details[open] .accounts-summary::before { transform: rotate(90deg); }
+    .accounts-summary:hover { background: var(--bg-muted); color: var(--text); }
+    .accounts-tables {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 600px) { .accounts-tables { grid-template-columns: 1fr; } }
+    .accounts-group { padding: 14px 16px; }
+    .accounts-group + .accounts-group { border-left: 1px solid var(--border); }
+    @media (max-width: 600px) { .accounts-group + .accounts-group { border-left: none; border-top: 1px solid var(--border); } }
+    .accounts-group-title { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+    .acc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .acc-table th { text-align: left; padding: 4px 8px; font-weight: 600; color: var(--text-3); font-size: 11.5px; border-bottom: 1px solid var(--border); }
+    .acc-table td { padding: 5px 8px; color: var(--text-2); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 12px; }
+    .acc-table tr:last-child td { border-bottom: none; }
+    .acc-table tr:hover td { background: var(--bg-muted); }
+
     /* ── Awards ──────────────────────────────────────── */
     .award-list { list-style: none; }
     .award-item {
@@ -579,6 +615,77 @@
           <li><strong>本地化部署与 Prompt 工程：</strong>基于 Ollama 在 4×Tesla V100S 32GB GPU 集群部署 DeepSeek-32B；Few-shot 模板提升意图识别准确性；SSE 流式首字延迟 <strong>TTFT &lt; 300ms</strong></li>
           <li><strong>多级缓存优化：</strong>Redis 缓存热点设备查询与常见问答对，高频查询响应时间从 ~1.2s 降至 <strong>~200ms</strong></li>
         </ul>
+      </div>
+
+      <!-- Project 3: szjc platform -->
+      <div class="project">
+        <div class="project-header">
+          <span class="project-title">
+            《人工智能概论》数字化教材平台
+            <span class="pill-live">已上线运行</span>
+          </span>
+          <span class="entry-date">2025.03 — 至今</span>
+        </div>
+        <div class="project-meta">
+          教材编写（第 4、5 章）&amp; 后端研发 · GOODLAB 实验室 ·
+          <a href="http://szjc.ncu.edu.cn" target="_blank" rel="noopener">szjc.ncu.edu.cn ↗</a>
+        </div>
+        <p class="project-summary">
+          基于 GOODLAB 团队编写的《人工智能概论》纸质教材（2025 年出版，共 8 章），利用现代化 Web 技术将其转化为交互式在线学习平台，面向<strong>非计算机专业学生</strong>，帮助其理解 AI 时代下人工智能基础理论与实际应用。平台涵盖章节阅读、题目自测等核心功能，采用前后端分离架构。参与编写全书<strong>第 4、5 章</strong>（机器学习核心理论与自然语言处理技术），同时负责平台后端研发工作。
+        </p>
+        <div class="tags">
+          <span class="tag">Spring Boot</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">Vue 3</span><span class="tag">Spring Security</span><span class="tag">JWT</span><span class="tag">前后端分离</span>
+        </div>
+        <ul class="highlights">
+          <li><strong>教材编写（第 4 章 · 机器学习）：</strong>撰写监督学习、无监督学习、强化学习核心原理，结合实际案例降低非专业读者理解门槛，采用 LaTeX 排版</li>
+          <li><strong>教材编写（第 5 章 · 自然语言处理）：</strong>覆盖词向量、注意力机制、预训练大模型等核心 NLP 技术演进脉络及典型应用场景</li>
+          <li><strong>平台后端架构：</strong>基于 Spring Boot 3 构建 RESTful API，Spring Security + JWT 实现学生 / 教师 / 管理员三级权限体系，接口文档通过 SpringDoc OpenAPI 自动生成</li>
+          <li><strong>题目自测模块：</strong>设计题目分章节管理、作答记录持久化与得分统计接口，支持客观题自动批改，学习进度实时同步</li>
+          <li><strong>Redis 缓存优化：</strong>对章节内容、高频题库等读多写少数据引入 Redis 缓存，合理设置 TTL，减轻数据库读压力</li>
+        </ul>
+
+        <!-- Test accounts -->
+        <details class="accounts-wrap">
+          <summary class="accounts-summary">测试账号（10 名学生 · 10 名教师）</summary>
+          <div class="accounts-tables">
+            <div class="accounts-group">
+              <div class="accounts-group-title">学生账号（初始密码：学号@ncu2025）</div>
+              <table class="acc-table">
+                <thead><tr><th>学号</th><th>姓名</th><th>初始密码</th></tr></thead>
+                <tbody>
+                  <tr><td>8007125131</td><td>林子涵</td><td>8007125131@ncu2025</td></tr>
+                  <tr><td>8007125132</td><td>陈思远</td><td>8007125132@ncu2025</td></tr>
+                  <tr><td>8007125133</td><td>王若曦</td><td>8007125133@ncu2025</td></tr>
+                  <tr><td>8007125134</td><td>张宇航</td><td>8007125134@ncu2025</td></tr>
+                  <tr><td>8007125135</td><td>刘雅婷</td><td>8007125135@ncu2025</td></tr>
+                  <tr><td>8007125136</td><td>赵天佑</td><td>8007125136@ncu2025</td></tr>
+                  <tr><td>8007125137</td><td>黄晓彤</td><td>8007125137@ncu2025</td></tr>
+                  <tr><td>8007125138</td><td>周浩然</td><td>8007125138@ncu2025</td></tr>
+                  <tr><td>8007125139</td><td>徐梦瑶</td><td>8007125139@ncu2025</td></tr>
+                  <tr><td>8007125140</td><td>高俊杰</td><td>8007125140@ncu2025</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="accounts-group">
+              <div class="accounts-group-title">教师账号</div>
+              <table class="acc-table">
+                <thead><tr><th>账号</th><th>密码</th></tr></thead>
+                <tbody>
+                  <tr><td>TCH_001</td><td>TCH_001@Ncu2026</td></tr>
+                  <tr><td>TCH_002</td><td>TCH_002@Ncu2026</td></tr>
+                  <tr><td>TCH_003</td><td>TCH_003@Ncu2026</td></tr>
+                  <tr><td>TCH_004</td><td>TCH_004@Ncu2026</td></tr>
+                  <tr><td>TCH_005</td><td>TCH_005@Ncu2026</td></tr>
+                  <tr><td>TCH_006</td><td>TCH_006@Ncu2026</td></tr>
+                  <tr><td>TCH_007</td><td>TCH_007@Ncu2026</td></tr>
+                  <tr><td>TCH_008</td><td>TCH_008@Ncu2026</td></tr>
+                  <tr><td>TCH_009</td><td>TCH_009@Ncu2026</td></tr>
+                  <tr><td>TCH_0010</td><td>TCH_0010@Ncu2026</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
       </div>
 
       <!-- Project 2 -->
