@@ -1,13 +1,11 @@
 (() => {
-  const grid = document.querySelector("#project-grid");
-  const cards = [...document.querySelectorAll(".project-card")];
+  const cards = [...document.querySelectorAll(".repo-card")];
+  const groups = [...document.querySelectorAll(".repo-group")];
   const filterButtons = [...document.querySelectorAll(".filter-button")];
   const searchInput = document.querySelector("#project-search");
   const countLabel = document.querySelector("#project-count");
-  const clearButton = document.querySelector("#clear-search");
-  const emptyState = document.querySelector("#empty-state");
 
-  if (!grid || !cards.length || !searchInput) return;
+  if (!cards.length || !groups.length || !searchInput || !countLabel) return;
 
   let activeFilter = "all";
 
@@ -17,7 +15,7 @@
       .replace(/\s+/g, " ")
       .trim();
 
-  const updateProjects = () => {
+  const updateRepositories = () => {
     const query = normalize(searchInput.value);
     let visibleCount = 0;
 
@@ -34,36 +32,34 @@
       if (visible) visibleCount += 1;
     });
 
-    countLabel.textContent = `显示 ${visibleCount} 个项目`;
-    emptyState.hidden = visibleCount !== 0;
-    clearButton.hidden = activeFilter === "all" && !query;
+    groups.forEach((group) => {
+      group.hidden = !group.querySelector(".repo-card:not([hidden])");
+    });
+
+    countLabel.textContent =
+      visibleCount === 0
+        ? "没有匹配的仓库"
+        : `显示 ${visibleCount} 个仓库`;
   };
 
   filterButtons.forEach((button) => {
+    const isDefault = button.dataset.filter === "all";
+    button.setAttribute("aria-pressed", String(isDefault));
+
     button.addEventListener("click", () => {
       activeFilter = button.dataset.filter || "all";
+
       filterButtons.forEach((item) => {
-        const active = item === button;
-        item.classList.toggle("is-active", active);
-        item.setAttribute("aria-pressed", String(active));
+        const isActive = item === button;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
       });
-      updateProjects();
+
+      updateRepositories();
     });
   });
 
-  searchInput.addEventListener("input", updateProjects);
-
-  clearButton.addEventListener("click", () => {
-    activeFilter = "all";
-    searchInput.value = "";
-    filterButtons.forEach((button) => {
-      const active = button.dataset.filter === "all";
-      button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
-    updateProjects();
-    searchInput.focus();
-  });
+  searchInput.addEventListener("input", updateRepositories);
 
   document.addEventListener("keydown", (event) => {
     const target = event.target;
@@ -79,17 +75,10 @@
 
     if (event.key === "Escape" && document.activeElement === searchInput) {
       searchInput.value = "";
-      updateProjects();
+      updateRepositories();
       searchInput.blur();
     }
   });
 
-  filterButtons.forEach((button) => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.filter === "all"),
-    );
-  });
-
-  updateProjects();
+  updateRepositories();
 })();
