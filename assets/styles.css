@@ -715,9 +715,8 @@ ul {
 
 .section-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+  grid-template-columns: 1fr;
   align-items: end;
-  gap: 40px;
   margin-bottom: 34px;
 }
 
@@ -737,14 +736,6 @@ ul {
   font-weight: 720;
   letter-spacing: -0.045em;
   line-height: 1.15;
-}
-
-.section-heading > p {
-  margin-bottom: 3px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.75;
-  text-align: right;
 }
 
 /* Experience */
@@ -1643,14 +1634,7 @@ ul {
 
   .section-heading {
     grid-template-columns: 1fr;
-    gap: 13px;
     margin-bottom: 27px;
-  }
-
-  .section-heading > p {
-    max-width: 560px;
-    margin-bottom: 0;
-    text-align: left;
   }
 
   .experience-item {
