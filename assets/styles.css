@@ -399,6 +399,41 @@ ul {
   letter-spacing: 0.08em;
 }
 
+.proof-body {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  gap: 15px;
+  padding-top: 13px;
+}
+
+.proof-portrait {
+  min-width: 0;
+  margin: 0;
+}
+
+.proof-portrait img {
+  display: block;
+  width: 76px;
+  height: 102px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-soft);
+  object-fit: cover;
+  object-position: center 24%;
+  filter: saturate(0.82) contrast(0.98);
+}
+
+.proof-portrait figcaption {
+  margin-top: 6px;
+  color: var(--quiet);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
 .proof-list {
   margin-bottom: 0;
 }
@@ -408,8 +443,17 @@ ul {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 18px;
-  padding: 12px 0;
+  padding: 9px 0;
   border-bottom: 1px solid var(--line);
+}
+
+.proof-list > div:first-child {
+  padding-top: 0;
+}
+
+.proof-list > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .proof-list dt {
@@ -443,6 +487,8 @@ ul {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 13px;
   padding-top: 13px;
+  margin-top: 13px;
+  border-top: 1px solid var(--line);
   font-size: 11px;
 }
 
@@ -1737,6 +1783,16 @@ ul {
 
   .proof-list dd {
     font-size: 20px;
+  }
+
+  .proof-body {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .proof-portrait img {
+    width: 68px;
+    height: 92px;
   }
 
   .proof-contact {
