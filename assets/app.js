@@ -1,4 +1,47 @@
 (() => {
+  const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
+  const navSections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (navLinks.length && navSections.length) {
+    let scrollFrame = 0;
+
+    const updateCurrentSection = () => {
+      const readingLine = window.scrollY + 150;
+      let currentSection = navSections[0];
+
+      navSections.forEach((section) => {
+        if (section.offsetTop <= readingLine) currentSection = section;
+      });
+
+      navLinks.forEach((link) => {
+        const isCurrent = link.getAttribute("href") === `#${currentSection.id}`;
+        link.classList.toggle("is-current", isCurrent);
+
+        if (isCurrent) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      scrollFrame = 0;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollFrame) {
+          scrollFrame = window.requestAnimationFrame(updateCurrentSection);
+        }
+      },
+      { passive: true },
+    );
+
+    updateCurrentSection();
+  }
+
   const cards = [...document.querySelectorAll(".repo-card")];
   const groups = [...document.querySelectorAll(".repo-group")];
   const filterButtons = [...document.querySelectorAll(".filter-button")];
