@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>赵劲 | AI Agent 开发 &amp; 后端开发</title>
   <meta name="description" content="赵劲（Nanqipro）的求职个人主页。南昌大学计算机技术硕士，现于 Klook 搜索与推荐部门从事 LLM 多智能体应用开发，关注 Agent 编排、工具系统、评估工程与后端开发。">
-  <meta name="theme-color" content="#f6f8f7">
-  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://nanqipro.github.io/">
 
   <meta property="og:type" content="website">
@@ -24,7 +24,29 @@
   <meta name="twitter:title" content="赵劲 | AI Agent 开发 &amp; 后端开发">
   <meta name="twitter:description" content="Agent 编排、工具系统、评估工程与可靠后端。">
   <meta name="twitter:image" content="https://nanqipro.github.io/og.png">
+  <link rel="icon" type="image/jpeg" href="个人照片.jpg">
 
+  <script>
+    (() => {
+      const themes = ["paper", "ink", "aurora", "terminal", "cosmos"];
+      let choice = "system";
+
+      try {
+        const saved = localStorage.getItem("zj-theme");
+        if (saved === "system" || themes.includes(saved)) choice = saved;
+      } catch (_) {
+        /* Use the system theme when storage is unavailable. */
+      }
+
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const resolved = choice === "system" ? (isDark ? "ink" : "paper") : choice;
+      document.documentElement.dataset.theme = resolved;
+      document.documentElement.dataset.themeChoice = choice;
+      document.documentElement.style.colorScheme = ["ink", "terminal", "cosmos"].includes(resolved)
+        ? "dark"
+        : "light";
+    })();
+  </script>
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/app.js" defer></script>
 </head>
@@ -46,10 +68,24 @@
         <a href="#projects">项目</a>
         <a href="#opensource">开源</a>
       </nav>
-      <a class="header-status" href="#contact">
-        <span aria-hidden="true"></span>
-        求职中 · 2027
-      </a>
+      <div class="header-tools">
+        <a class="header-status" href="#contact">
+          <span aria-hidden="true"></span>
+          求职中 · 2027
+        </a>
+        <label class="theme-picker" for="theme-select">
+          <span class="theme-picker-icon" aria-hidden="true">◐</span>
+          <span class="sr-only">选择页面主题</span>
+          <select id="theme-select" aria-label="选择页面主题">
+            <option value="system">跟随系统</option>
+            <option value="paper">暖纸 · Light</option>
+            <option value="ink">墨夜 · Dark</option>
+            <option value="aurora">极光 · Aurora</option>
+            <option value="terminal">终端 · Terminal</option>
+            <option value="cosmos">星云 · Cosmos</option>
+          </select>
+        </label>
+      </div>
     </div>
   </header>
 
@@ -57,14 +93,20 @@
     <section class="hero" id="profile">
       <div class="shell hero-layout">
         <div class="hero-copy">
-          <p class="hero-kicker">Engineering Profile · 2026</p>
-          <h1>赵劲 <span>/ Zhao Jin</span></h1>
-          <h2>AI Agent 开发 &amp; 后端开发</h2>
+          <p class="hero-kicker"><span class="live-dot" aria-hidden="true"></span> Engineering Profile · 2026</p>
+          <p class="hero-name">赵劲 <span>/ Zhao Jin</span></p>
+          <h1>让 AI Agent<br><em>可靠地工作。</em></h1>
+          <h2>AI Agent 开发 <span aria-hidden="true">×</span> 后端工程</h2>
           <p class="hero-summary">
             南昌大学计算机技术硕士，现于 <strong>Klook 搜索与推荐部门</strong>
             参与 LLM 多智能体诊断工作台研发。关注 Agent 编排、工具系统、评估工程，
             以及支撑这些能力稳定运行的后端服务。
           </p>
+          <ul class="hero-signals" aria-label="技术方向">
+            <li><span>01</span> Multi-Agent</li>
+            <li><span>02</span> Tool Systems</li>
+            <li><span>03</span> Reliable Backend</li>
+          </ul>
           <div class="hero-actions">
             <a class="button button-primary" href="#experience">查看技术经历 <span aria-hidden="true">↘</span></a>
             <a class="button button-secondary" href="#opensource">浏览公开项目</a>
@@ -74,7 +116,25 @@
         <aside class="proof-panel" aria-label="可验证的技术履历">
           <div class="proof-heading">
             <strong>可验证的技术履历</strong>
-            <code>PROFILE.LOG</code>
+            <code>AGENT_PROFILE.LOG</code>
+          </div>
+          <div class="activity-console">
+            <div class="console-bar">
+              <span class="console-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <code>~/nanqipro/agent-lab</code>
+              <span class="console-state"><i aria-hidden="true"></i> LIVE</span>
+            </div>
+            <div class="console-code" aria-label="正在运行的 Agent 示例代码">
+              <code><span class="code-muted">01</span> <span class="code-key">agent</span> = Graph(<span class="code-value">tools</span>, memory)</code>
+              <code><span class="code-muted">02</span> <span class="code-key">result</span> = <span class="code-fn">await</span> agent.run(case)</code>
+              <code><span class="code-muted">03</span> verify(result)<span class="typing-caret" aria-hidden="true"></span></code>
+            </div>
+            <div class="contribution-head">
+              <span>CODE CONTRIBUTION</span>
+              <span>12 WEEKS / LIVE</span>
+            </div>
+            <div class="contribution-grid" id="code-contribution-grid" aria-hidden="true"></div>
+            <p class="contribution-caption"><span aria-hidden="true"></span> Agent 编排、评估与后端提交持续发生中</p>
           </div>
           <div class="proof-body">
             <figure class="proof-portrait">
