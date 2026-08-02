@@ -140,9 +140,9 @@
                 <span>Klook · Search &amp; Recommendation</span>
               </div>
               <h3>Beacon 灯塔</h3>
-              <p>参与 LLM 多智能体诊断工作台的工程研发，连接推理编排、模型路由与业务诊断数据。</p>
+              <p>主导意图评估、Data Agent 与 Code Audit Agent，并参与 7 类诊断意图编排及上下文工程。</p>
               <ul class="mini-tags" aria-label="Beacon 技术栈">
-                <li>LangGraph</li><li>deepagents</li><li>LiteLLM</li><li>MongoDB</li>
+                <li>LangGraph</li><li>deepagents</li><li>Claude Code</li><li>AgentMiddleware</li>
               </ul>
             </a>
             <a class="overview-card" href="#projects">
@@ -213,28 +213,43 @@
               </div>
               <p class="experience-summary">
                 参与 Beacon 灯塔——搜索算法团队的 LLM 多智能体诊断工作台，
-                将搜索 bad case、知识库、NL2SQL、链路日志和代码审计统一到对话式入口。
+                将搜索 bad case 排查、知识库反查、NL2SQL、链路日志追溯及代码审计统一到对话式入口，
+                由协调员 Agent 自主调度领域专家 Agent。
               </p>
               <ul class="evidence-list">
                 <li>
-                  <strong>意图分类评估体系 0→1：</strong>
-                  构建“确定性路由捕获 + LLM-as-Judge + verify”双层评估，
-                  支持 Gemini 模拟多轮追问，并对 Claude / Gemini 等模型进行横向评估。
+                  <strong>主导 · 意图分类评估体系 0→1：</strong>
+                  构建“确定性路由校验 + LLM-as-Judge 分类 / verify 双重校验”评估链路，
+                  降低同模型自偏好；使用 Gemini 模拟多轮用户追问，横评 Claude Opus / Sonnet / Gemini
+                  的路由、完成度与满意度。
                 </li>
                 <li>
-                  <strong>Data Agent：</strong>
-                  开发 4 个数据血缘诊断工具，支持按实体名查询上下游链路、离线产出健康度，
-                  以及数仓表 DDL、分区键与存储位置。
+                  <strong>主导 · Data Agent 开发：</strong>
+                  围绕搜索上游数据、血缘及离线产出健康度开发 4 个 Tool，支持 QU 词典、召回路、索引、
+                  DAG、字段等实体的上下游追溯、健康概览及数仓表定位（DDL / 分区键 / 存储位置）。
                 </li>
                 <li>
-                  <strong>多 Agent 编排：</strong>
+                  <strong>主导 · Code Audit Agent 开发：</strong>
+                  实现代码审计子智能体，封装 Claude Code CLI 无头执行，并完成任务超时控制、结果解析与
+                  SSE 流式返回；协同运维完成 Claude Code 在 AWS Bedrock AgentCore 上的隔离运行。
+                </li>
+                <li>
+                  <strong>参与 · 多 Agent 编排：</strong>
                   基于 LangGraph + deepagents 构建“协调员 + 领域专家”ReAct 架构，
-                  覆盖 7 类诊断意图，并通过 MongoDB Checkpointer 持久化多轮会话状态。
+                  协调员自主派单覆盖搜索诊断、知识库、日志、代码审计、NL2SQL 共 7 类意图；
+                  以 LangGraph State + MongoDB Checkpointer 实现多轮对话上下文跨会话持久化。
+                </li>
+                <li>
+                  <strong>参与 · Agent 与上下文工程：</strong>
+                  基于 LangChain AgentMiddleware 扩展模型调用链，落地 Tool Exclusion、Prompt Caching、
+                  动态上下文注入与响应 Claim Guard；通过按意图增量摘要压缩长会话上下文，
+                  结合 Checkpointer 持久化会话状态。
                 </li>
               </ul>
               <ul class="tag-list" aria-label="Klook 实习技术栈">
                 <li>Python</li><li>LangGraph</li><li>deepagents</li><li>LangChain</li>
                 <li>LiteLLM</li><li>MongoDB</li><li>MySQL</li><li>SSE</li>
+                <li>Claude Code</li><li>AWS Bedrock AgentCore</li>
               </ul>
             </div>
           </article>
