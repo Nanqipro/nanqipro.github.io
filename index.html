@@ -35,8 +35,8 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/app.js" defer></script>
+  <link rel="stylesheet" href="assets/styles.css?v=20260802-theme-switch-v2">
+  <script src="assets/app.js?v=20260802-theme-switch-v2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -57,13 +57,19 @@
         <a href="#opensource">开源</a>
       </nav>
       <div class="header-actions">
-        <button class="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" title="切换到深色模式">
-          <span class="theme-toggle-icon" aria-hidden="true">☀</span>
-          <span class="theme-toggle-text">浅色</span>
-        </button>
-        <a class="header-status" href="#contact">
+        <div class="theme-switcher" role="group" aria-label="页面主题">
+          <button class="theme-option is-active" type="button" data-theme-value="light" aria-pressed="true">
+            <span aria-hidden="true">☀</span>
+            浅色
+          </button>
+          <button class="theme-option" type="button" data-theme-value="dark" aria-pressed="false">
+            <span aria-hidden="true">☾</span>
+            深色
+          </button>
+        </div>
+        <a class="header-status" href="#contact" aria-label="联系我，求职中，2027 届">
           <span aria-hidden="true"></span>
-          求职中 · 2027
+          <span class="header-status-text">求职中 · 2027</span>
         </a>
       </div>
     </div>

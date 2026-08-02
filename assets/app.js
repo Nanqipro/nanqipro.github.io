@@ -1,23 +1,20 @@
 (() => {
   const root = document.documentElement;
-  const themeToggle = document.querySelector(".theme-toggle");
-  const themeLabel = themeToggle?.querySelector(".theme-toggle-text");
-  const themeIcon = themeToggle?.querySelector(".theme-toggle-icon");
+  const themeOptions = [
+    ...document.querySelectorAll(".theme-option[data-theme-value]"),
+  ];
   const themeColor = document.querySelector("meta[name='theme-color']");
 
   const applyTheme = (theme, persist = false) => {
     const isDark = theme === "dark";
     root.dataset.theme = isDark ? "dark" : "light";
 
-    if (themeToggle) {
-      const nextThemeName = isDark ? "浅色" : "深色";
-      themeToggle.setAttribute("aria-pressed", String(isDark));
-      themeToggle.setAttribute("aria-label", `切换到${nextThemeName}模式`);
-      themeToggle.setAttribute("title", `切换到${nextThemeName}模式`);
-    }
+    themeOptions.forEach((option) => {
+      const isActive = option.dataset.themeValue === root.dataset.theme;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-pressed", String(isActive));
+    });
 
-    if (themeLabel) themeLabel.textContent = isDark ? "深色" : "浅色";
-    if (themeIcon) themeIcon.textContent = isDark ? "☾" : "☀";
     if (themeColor) {
       themeColor.setAttribute("content", isDark ? "#111715" : "#f6f8f7");
     }
@@ -33,8 +30,10 @@
 
   applyTheme(root.dataset.theme);
 
-  themeToggle?.addEventListener("click", () => {
-    applyTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
+  themeOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      applyTheme(option.dataset.themeValue, true);
+    });
   });
 
   const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
