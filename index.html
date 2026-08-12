@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>赵劲 | AI Agent 开发 &amp; 后端开发</title>
-  <meta name="description" content="赵劲（Nanqipro）的求职个人主页。南昌大学计算机技术硕士，现于 Klook 搜索与推荐部门从事 LLM 多智能体应用开发，关注 Agent 编排、工具系统、评估工程与后端开发。">
+  <meta name="description" content="赵劲（Nanqipro）的求职个人主页。南昌大学计算机技术硕士，现于 Klook 搜索与推荐部门从事 LLM 多智能体应用开发，关注 Agent 编排与评估、上下文工程、可靠消息链路及 AI 后端开发。">
   <meta name="theme-color" content="#f6f8f7">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="https://nanqipro.github.io/">
@@ -13,7 +13,7 @@
   <meta property="og:locale" content="zh_CN">
   <meta property="og:site_name" content="赵劲 · Nanqipro">
   <meta property="og:title" content="赵劲 | AI Agent 开发 &amp; 后端开发">
-  <meta property="og:description" content="Agent 编排、工具系统、评估工程与可靠后端。实习、项目与 25 个公开仓库的技术档案。">
+  <meta property="og:description" content="Agent 编排与评估、上下文工程、可靠消息链路与 AI 后端。实习、项目与 25 个公开仓库的技术档案。">
   <meta property="og:url" content="https://nanqipro.github.io/">
   <meta property="og:image" content="https://nanqipro.github.io/og.png">
   <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="赵劲 | AI Agent 开发 &amp; 后端开发">
-  <meta name="twitter:description" content="Agent 编排、工具系统、评估工程与可靠后端。">
+  <meta name="twitter:description" content="Agent 编排与评估、上下文工程、可靠消息链路与 AI 后端。">
   <meta name="twitter:image" content="https://nanqipro.github.io/og.png">
 
   <script>
@@ -84,8 +84,8 @@
           <h2>AI Agent 开发 &amp; 后端开发</h2>
           <p class="hero-summary">
             南昌大学计算机技术硕士，现于 <strong>Klook 搜索与推荐部门</strong>
-            参与 LLM 多智能体诊断工作台研发。关注 Agent 编排、工具系统、评估工程，
-            以及支撑这些能力稳定运行的后端服务。
+            参与 LLM 多智能体诊断工作台研发。聚焦 Agent 编排与评估、上下文工程，
+            以及支撑知识与工具稳定流转的可靠 AI 后端。
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#experience">查看技术经历 <span aria-hidden="true">↘</span></a>
@@ -140,7 +140,7 @@
                 <span>Klook · Search &amp; Recommendation</span>
               </div>
               <h3>Beacon 灯塔</h3>
-              <p>主导意图评估、Data Agent 与 Code Audit Agent，并参与 7 类诊断意图编排及上下文工程。</p>
+              <p>主导 Agent 评估、Data Agent 与 Code Audit Agent，参与 7 类专家 Agent 编排及上下文治理。</p>
               <ul class="mini-tags" aria-label="Beacon 技术栈">
                 <li>LangGraph</li><li>deepagents</li><li>Claude Code</li><li>AgentMiddleware</li>
               </ul>
@@ -218,38 +218,42 @@
               </p>
               <ul class="evidence-list">
                 <li>
-                  <strong>主导 · 意图分类评估体系 0→1：</strong>
-                  构建“确定性路由校验 + LLM-as-Judge 分类 / verify 双重校验”评估链路，
-                  降低同模型自偏好；使用 Gemini 模拟多轮用户追问，横评 Claude Opus / Sonnet / Gemini
-                  的路由、完成度与满意度。
-                </li>
-                <li>
-                  <strong>主导 · Data Agent 开发：</strong>
-                  围绕搜索上游数据、血缘及离线产出健康度开发 4 个 Tool，支持 QU 词典、召回路、索引、
-                  DAG、字段等实体的上下游追溯、健康概览及数仓表定位（DDL / 分区键 / 存储位置）。
-                </li>
-                <li>
-                  <strong>主导 · Code Audit Agent 开发：</strong>
-                  实现代码审计子智能体，封装 Claude Code CLI 无头执行，并完成任务超时控制、结果解析与
-                  SSE 流式返回；协同运维完成 Claude Code 在 AWS Bedrock AgentCore 上的隔离运行。
-                </li>
-                <li>
                   <strong>参与 · 多 Agent 编排：</strong>
                   基于 LangGraph + deepagents 构建“协调员 + 领域专家”ReAct 架构，
-                  协调员自主派单覆盖搜索诊断、知识库、日志、代码审计、NL2SQL 共 7 类意图；
-                  以 LangGraph State + MongoDB Checkpointer 实现多轮对话上下文跨会话持久化。
+                  编排搜索诊断、知识库、日志、代码审计及数据血缘等 7 类专家 Agent 与多类 Skills；
+                  协调员根据用户意图自主派单，领域 Agent 复用工具并定制技术名称。
                 </li>
                 <li>
-                  <strong>参与 · Agent 与上下文工程：</strong>
-                  基于 LangChain AgentMiddleware 扩展模型调用链，落地 Tool Exclusion、Prompt Caching、
-                  动态上下文注入与响应 Claim Guard；通过按意图增量摘要压缩长会话上下文，
-                  结合 Checkpointer 持久化会话状态。
+                  <strong>主导 · Agent 评估体系 0→1：</strong>
+                  搭建“确定性路由校验 + LLM-as-Judge”评估链路，使用 Gemini 生成最多 5 轮动态追问，
+                  横评 Claude Opus / Sonnet 与 Gemini；输出路由准确率、回复完成率、重问率、解决率与满意度 5 类指标。
+                </li>
+                <li>
+                  <strong>负责 · Code Audit Agent：</strong>
+                  封装 Claude Code CLI 无头执行，设置 25 轮执行上限与进程级硬超时，
+                  完成 Stream JSON 结果解析与 SSE 流式返回；协同运维将隔离执行环境部署至 AWS Bedrock AgentCore。
+                </li>
+                <li>
+                  <strong>负责 · Data Agent：</strong>
+                  围绕搜索上游数据、血缘及离线产出健康度开发 4 个 Tool，支持 QU 词典、召回链路、索引、
+                  DAG 与字段的上下游追溯，并提供数仓表 DDL、分区键与存储位置定位。
+                </li>
+                <li>
+                  <strong>参与 · 上下文与响应治理：</strong>
+                  基于 AgentMiddleware 扩展模型调用链，通过 Tool Exclusion 排除 8 个无关内置工具，
+                  使单轮 Tool Schema 上下文减少约 2–3K Tokens；落地 Prompt Caching、动态上下文注入与 Claim Guard，
+                  并结合增量摘要及 MongoDB Checkpointer 治理长会话状态。
+                </li>
+                <li>
+                  <strong>负责 · 知识库增量同步：</strong>
+                  将 QU 词典每日 S3 全量刷新、次日生效的链路改造为 Kafka 实时增量通道；
+                  基于 MySQL Outbox、分区键保序、失败退避及同业务键旧消息取代，实现分钟级更新与可靠投递。
                 </li>
               </ul>
               <ul class="tag-list" aria-label="Klook 实习技术栈">
                 <li>Python</li><li>LangGraph</li><li>deepagents</li><li>LangChain</li>
-                <li>LiteLLM</li><li>MongoDB</li><li>MySQL</li><li>SSE</li>
-                <li>Claude Code</li><li>AWS Bedrock AgentCore</li>
+                <li>AgentMiddleware</li><li>LiteLLM</li><li>MongoDB</li><li>MySQL</li>
+                <li>Kafka</li><li>MySQL Outbox</li><li>SSE</li><li>Claude Code</li>
               </ul>
             </div>
           </article>
@@ -306,14 +310,14 @@
               <a href="https://iimigx.ncu.edu.cn" target="_blank" rel="noopener noreferrer">在线平台 ↗</a>
             </div>
             <p class="case-summary">
-              面向跨学科科研人员的设备预约平台。本地部署 DeepSeek-32B，
-              以 MCP 为工具边界完成自然语言检索、设备匹配与自动预约。
+              面向跨学科科研人员的设备预约平台。基于 Spring AI 构建 MCP Host 并接入本地 DeepSeek-32B 推理服务，
+              以自然语言完成设备检索、智能匹配与自动预约。
             </p>
             <div class="case-body">
               <ul class="case-points">
-                <li><strong>MCP 分层：</strong>拆分设备查询、预约调度、知识库三个 MCP Server，由 Spring AI Host 统一接入。</li>
-                <li><strong>RAG：</strong>对仪器手册与操作规程执行 Chunking、Embedding 和 pgvector Top-K 检索。</li>
-                <li><strong>服务优化：</strong>Redis 缓存热点查询与问答，高频查询 RT 由约 1.2s 降至约 200ms。</li>
+                <li><strong>MCP 工具服务化：</strong>拆分设备查询、预约调度、知识检索 3 个 MCP Server，由 MCP Host 统一发现与调用。</li>
+                <li><strong>RAG 知识增强：</strong>对仪器手册与操作规程执行 Chunking、Embedding 和 pgvector Top-K 语义检索，自建评测集 Top-5 命中率达 90%+。</li>
+                <li><strong>上下文与性能优化：</strong>Redis 将热点查询 RT 由约 1.2s 降至 200ms；MCP Resources 按需加载设备手册，Token 开销降低约 25%。</li>
               </ul>
               <dl class="case-metrics">
                 <div><dt>预约效率</dt><dd>+60%<sup>+</sup></dd></div>
@@ -404,38 +408,38 @@
           <article>
             <span>01</span>
             <h3>Agent 系统</h3>
-            <p>LangGraph、deepagents、LangChain、ReAct、多 Agent 协作、Function / Tool Calling、MCP、Checkpointer。</p>
-            <small>关注路由、工具边界、状态、异常降级与可观测性。</small>
+            <p>LangGraph、LangChain、deepagents、ReAct、多 Agent 协作、Agent Skills、Function / Tool Calling、MCP。</p>
+            <small>覆盖自主路由、工具边界、专家协作与扩展机制。</small>
           </article>
           <article>
             <span>02</span>
             <h3>评估与模型工程</h3>
-            <p>LLM-as-Judge、确定性路由评估、多模型横评、Prompt Caching、Tool Exclusion、LiteLLM。</p>
-            <small>把“效果不错”转化为可复核的评估过程。</small>
+            <p>确定性路由校验、LLM-as-Judge、多模型横评、LiteLLM、结构化输出、响应 Claim Guard。</p>
+            <small>以可复核指标评估路由、完成度、重问、解决率与满意度。</small>
           </article>
           <article>
             <span>03</span>
-            <h3>Python 后端</h3>
-            <p>asyncio、ASGI / Starlette、FastAPI、SSE、MySQL、MongoDB、PostgreSQL / pgvector。</p>
-            <small>适合模型工具、长任务与流式交互服务。</small>
+            <h3>上下文工程</h3>
+            <p>AgentMiddleware、Prompt Caching、Tool Exclusion、动态上下文注入、增量摘要、MongoDB Checkpointer。</p>
+            <small>控制长会话状态、工具上下文开销与响应边界。</small>
           </article>
           <article>
             <span>04</span>
-            <h3>Java 后端</h3>
-            <p>Java、Spring Boot、Spring AI、MySQL、Redis、RabbitMQ、JUC、JVM、常用设计模式。</p>
-            <small>能够完成 API、缓存、消息与领域逻辑开发。</small>
+            <h3>Java / Python 后端</h3>
+            <p>Java、Spring Boot / Spring AI、JUC、JVM；Python asyncio、ASGI / FastAPI、SSE。</p>
+            <small>支撑模型工具、并发任务、API 与流式交互服务。</small>
           </article>
           <article>
             <span>05</span>
-            <h3>AI 与系统基础</h3>
-            <p>PyTorch、ONNX Runtime、RAG、Embedding、CUDA C++、Ascend C / CANN、模型推理与性能分析。</p>
-            <small>从应用层向模型、算子和异构计算继续下探。</small>
+            <h3>数据与中间件</h3>
+            <p>MySQL、PostgreSQL / pgvector、MongoDB、Redis、Kafka、RabbitMQ、MySQL Outbox。</p>
+            <small>具备缓存、消息、幂等、保序、失败退避与分布式一致性实践。</small>
           </article>
           <article>
             <span>06</span>
-            <h3>工程交付</h3>
-            <p>Git、Docker / Compose、Linux Shell、测试、CLI、API 契约、前后端联调与技术文档。</p>
-            <small>保留可运行入口、配置边界和验证证据。</small>
+            <h3>RAG 与工程交付</h3>
+            <p>Chunking、Embedding、pgvector、Top-K 检索；Git、Docker / Compose、Claude Code CLI、Linux Shell。</p>
+            <small>从知识入库、检索评估到服务部署形成完整交付链路。</small>
           </article>
         </div>
       </div>
@@ -716,7 +720,7 @@
   <footer class="site-footer">
     <div class="shell footer-inner">
       <p>© 2026 赵劲 · Zhao Jin</p>
-      <p>Last updated for AI Agent &amp; backend opportunities.</p>
+      <p>Last updated · 2026.08 · Agent &amp; backend opportunities.</p>
       <a href="#top">回到顶部 ↑</a>
     </div>
   </footer>
