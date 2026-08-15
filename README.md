@@ -1,6 +1,6 @@
 # nanqipro.github.io
 
-赵劲（Nanqipro）的 Data Agent、AI Agent 与后端开发求职主页。
+赵劲（Nanqipro）的 AI Agent 开发与后端开发求职主页。
 
 页面以实习经历和核心工程项目为主线，并整理指定的 25 个公开仓库。仓库统一归入四类：
 
