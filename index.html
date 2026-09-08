@@ -140,9 +140,9 @@
                 <span>Klook · Search &amp; Recommendation</span>
               </div>
               <h3>Beacon 灯塔</h3>
-              <p>主导 Agent 评测、Data Agent 与 Code Audit Agent，参与 5 类专家 Agent、3 类 Skills 及上下文治理。</p>
+              <p>主导 Agent 评测与 3 类 Skills，参与多 Agent 编排、上下文治理，并建设知识同步与任务可靠性链路。</p>
               <ul class="mini-tags" aria-label="Beacon 技术栈">
-                <li>LangGraph</li><li>deepagents</li><li>Claude Code</li><li>AgentMiddleware</li>
+                <li>LangGraph</li><li>deepagents</li><li>AgentMiddleware</li><li>Kafka / KMQ</li>
               </ul>
             </a>
             <a class="overview-card" href="#projects">
@@ -207,58 +207,56 @@
               <div class="experience-title">
                 <div>
                   <h3>深圳市客路网络科技有限公司（Klook）</h3>
-                  <p>大模型应用开发实习生 · S&amp;R 搜索与推荐部门</p>
+                  <p>AI Agent 与后端研发实习生 · S&amp;R 搜索与推荐部门</p>
                 </div>
                 <span>深圳</span>
               </div>
               <p class="experience-summary">
                 参与 Beacon 灯塔——搜索算法团队的 LLM 多智能体诊断工作台，
-                将搜索 bad case 排查、知识库反查、NL2SQL、链路日志追溯及代码审计统一到对话式入口，
-                由协调员 Agent 自主调度领域专家 Agent。
+                将搜索 Bad Case 排查、知识库反查、NL2SQL、链路日志追溯及数据血缘诊断统一到对话式入口，
+                由协调员 Agent 识别意图、拆解任务并调度领域专家 Agent，降低复杂问题定位、回归验证和人工复核成本。
               </p>
               <ul class="evidence-list">
                 <li>
-                  <strong>参与 · 多 Agent 编排：</strong>
-                  基于 LangGraph + deepagents 构建“协调员 + 领域专家”ReAct 架构，
-                  编排搜索诊断、知识库、日志、代码审计及数据血缘 5 类专家 Agent 与 3 类 Skills；
-                  协调员根据用户意图自主规划并派发任务。
+                  <strong>多 Agent 编排与 Skills 生态：</strong>
+                  参与构建“协调员 + 5 类领域 Agent”分层 ReAct 架构及搜索诊断、知识库、数据血缘 3 类领域 Agent；
+                  主导 NL2SQL、ES Query、LLM API Guide 3 类内部 Skills 的标准化接入，实现启动扫描、注册装配、渐进式加载与通用 ReAct 执行。
                 </li>
                 <li>
-                  <strong>主导 · Agent 评估体系 0→1：</strong>
-                  搭建“确定性路由校验 + LLM-as-Judge”评估链路，使用 Gemini 生成最多 5 轮动态追问，
-                  横评 Claude Opus / Sonnet 与 Gemini；输出路由准确率、回复完成率、重问率、解决率与满意度 5 类指标。
+                  <strong>上下文与异步工程：</strong>
+                  接入 MongoDB Checkpointer 持久化消息、中间结果与会话状态，支持跨轮续接及多 Pod 恢复；
+                  通过 Tool Exclusion 使单轮 Tool Schema 减少约 2–3K Tokens，并落地 Prompt Caching、动态上下文与增量摘要。
                 </li>
                 <li>
-                  <strong>负责 · Code Audit Agent：</strong>
-                  封装 Claude Code CLI 无头执行，设置 25 轮执行上限与进程级硬超时，
-                  完成 Stream JSON 结果解析与 SSE 流式返回；协同运维将隔离执行环境部署至 AWS Bedrock AgentCore。
+                  <strong>Agent 评估体系 0→1：</strong>
+                  搭建覆盖 3 类 Agent 和 2 类 Skills 的“确定性路由 + LLM-as-Judge”评估链路，制作 250 题标准评估集，
+                  支持最多 5 轮动态追问与多模型横评，推动路由准确率由 85% 提升至 95%、回复完成率达到 98.2%。
                 </li>
                 <li>
-                  <strong>负责 · Data Agent 与 NL2SQL：</strong>
-                  围绕搜索上游数据、血缘及离线产出健康度开发 4 个 Tool，支持 QU 词典、召回链路、索引、DAG 与字段追溯，
-                  并提供数仓表 DDL、分区键及存储位置定位；基于 ReAct + Tool Calling 构建表结构感知 SQL 与异步查询执行能力。
+                  <strong>Data Agent 与 NL2SQL：</strong>
+                  负责数据血缘诊断 Agent，将典型跨系统上下游血缘诊断收敛为一次会话提问；
+                  基于 ReAct + Tool Calling 开发表结构感知的统一异步查询引擎并支持 HiveServer2，80 条离线评测中 SQL 一次执行通过率达 90%（72/80）。
                 </li>
                 <li>
-                  <strong>参与 · 上下文与响应治理：</strong>
-                  基于 AgentMiddleware 扩展模型调用链，通过 Tool Exclusion 排除 8 个无关内置工具，
-                  使单轮 Tool Schema 上下文减少约 2-3K Tokens；落地 Prompt Caching、动态上下文注入与 Claim Guard，
-                  并结合增量摘要及 MongoDB Checkpointer 治理长会话状态。
+                  <strong>知识库同步与消息可靠性：</strong>
+                  将 QU 词典依赖 S3 每日全量刷新、变更 T+1 生效的链路改造为 Kafka 实时增量通道，接入纠错词、POI、类目 3 类 Map 词典，
+                  累计处理 200+ 条变更，将生效时延缩短至 P95 1 分钟内。
                 </li>
                 <li>
-                  <strong>负责 · 知识库同步与消息可靠性：</strong>
-                  将 S3 每日全量刷新、T+1 生效的词典链路改造为 Kafka 实时增量通道，接入纠错词、POI、类目 3 类 Map 词典；
-                  基于 MySQL Outbox + Kafka 构建可重试投递链路，以词典分区键保序、失败退避及同业务键旧消息取代实现分钟级可靠更新。
+                  <strong>可靠投递与保序：</strong>
+                  基于 MySQL Outbox + Kafka 构建可靠投递链路，支持单批 50 条消息、10 秒发布超时及最多 3 次投递尝试，首次投递成功率达 99%；
+                  通过 event_id 幂等、业务分区键保序及同键旧消息作废避免重试乱序与旧值覆盖，并以 S3 全量刷新保障最终一致性。
                 </li>
                 <li>
-                  <strong>负责 · 自动巡检与任务治理：</strong>
-                  基于 Cron + MySQL 分布式租约实现 Prism 多副本单例调度，以任务名和按日锁双层幂等避免重复建单；
-                  自动采样 Query 并对卡死、评估失败及低合格率触发告警；通过 Managed Worker 统一 Cron 调度、心跳续租、超时控制与故障接管。
+                  <strong>自动点检与任务治理：</strong>
+                  基于 Cron + MySQL 分布式租约实现 Prism 多副本单例调度，每周拉取 200 条可疑 Query 进入 AI 点检，低于 80% 通过率时触发告警，
+                  将人工复核范围由约 300 条降至 20 条；以 Managed Worker 纳管 5 类后台任务，将故障恢复由约 10 分钟缩短至 1–2 分钟。
                 </li>
               </ul>
               <ul class="tag-list" aria-label="Klook 实习技术栈">
-                <li>Python asyncio</li><li>LangGraph</li><li>deepagents</li><li>LangChain</li>
-                <li>HiveServer2</li><li>MongoDB</li><li>MySQL</li><li>Kafka / KMQ</li>
-                <li>MySQL Outbox</li><li>SSE</li><li>Claude Code</li><li>AWS AgentCore</li>
+                <li>Python asyncio</li><li>LangGraph</li><li>deepagents</li><li>Agent Skills</li>
+                <li>AgentMiddleware</li><li>MongoDB</li><li>HiveServer2</li><li>MySQL</li>
+                <li>MySQL Outbox</li><li>Kafka / KMQ</li><li>LiteLLM</li><li>SSE</li>
               </ul>
             </div>
           </article>
