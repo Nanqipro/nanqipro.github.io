@@ -410,7 +410,7 @@ ul {
 
 .hero h1 {
   margin-bottom: 5px;
-  font-size: clamp(52px, 5.2vw, 72px);
+  font-size: clamp(46px, 4.6vw, 64px);
   font-weight: 740;
   letter-spacing: -0.06em;
   line-height: 1.08;
@@ -424,7 +424,7 @@ ul {
 .hero-copy > h2 {
   margin-bottom: 15px;
   color: var(--accent-dark);
-  font-size: clamp(28px, 2.7vw, 37px);
+  font-size: clamp(26px, 2.35vw, 33px);
   font-weight: 680;
   letter-spacing: -0.035em;
   line-height: 1.25;
@@ -1836,11 +1836,11 @@ ul {
   }
 
   .hero h1 {
-    font-size: 56px;
+    font-size: 50px;
   }
 
   .hero-copy > h2 {
-    font-size: 29px;
+    font-size: 27px;
   }
 
   .case-body {
@@ -1947,11 +1947,11 @@ ul {
   }
 
   .hero h1 {
-    font-size: clamp(44px, 12vw, 57px);
+    font-size: clamp(41px, 11vw, 51px);
   }
 
   .hero-copy > h2 {
-    font-size: clamp(26px, 6.5vw, 31px);
+    font-size: clamp(24px, 6vw, 29px);
   }
 
   .proof-panel {
@@ -2110,7 +2110,7 @@ ul {
   }
 
   .hero h1 {
-    font-size: 45px;
+    font-size: 41px;
   }
 
   .hero h1 span {
@@ -2122,7 +2122,7 @@ ul {
 
   .hero-copy > h2 {
     margin-top: 12px;
-    font-size: 25px;
+    font-size: 23px;
   }
 
   .hero-summary {
