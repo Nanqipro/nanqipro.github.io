@@ -681,9 +681,35 @@ ul {
 }
 
 .news-card-featured {
+  position: relative;
+  overflow: hidden;
   border-color: var(--dark-border);
   background: var(--dark);
   color: var(--dark-ink);
+}
+
+.news-card-featured::before {
+  position: absolute;
+  right: 20px;
+  bottom: 62px;
+  color: var(--dark-accent);
+  content: "✦  ✦";
+  font-size: 12px;
+  letter-spacing: 8px;
+  opacity: 0.78;
+  transform: rotate(-8deg);
+}
+
+.news-card-featured::after {
+  position: absolute;
+  right: 16px;
+  bottom: 13px;
+  content: "💐";
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  filter: saturate(0.92) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.2));
+  transform: rotate(8deg);
 }
 
 .news-meta {
@@ -741,6 +767,7 @@ ul {
 }
 
 .news-card-featured > strong {
+  padding-right: 72px;
   border-top-color: var(--dark-line);
   color: var(--dark-accent);
 }
@@ -2120,6 +2147,17 @@ ul {
   .news-card {
     min-height: 0;
     padding: 18px;
+  }
+
+  .news-card-featured::before {
+    right: 18px;
+    bottom: 59px;
+  }
+
+  .news-card-featured::after {
+    right: 13px;
+    bottom: 12px;
+    font-size: 44px;
   }
 
   .news-meta {
